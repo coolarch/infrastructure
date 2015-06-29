@@ -6,50 +6,20 @@
 		<artifactId>infrastructure</artifactId>
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>base-pom </artifactId>
+	<artifactId>base-pom</artifactId>
 	<packaging>pom</packaging>
 	<name>base-pom</name>
 	<description>Base pom.xml file for providing baseline configuration for all CoolArch Maven projects.</description>
-	<url>https://github.com/coolarch/infrastructure</url>
-	<organization>
-		<name>CoolArch</name>
-		<url>http://www.arch.cool</url>
-	</organization>
-	<inceptionYear>2015</inceptionYear>
-	<issueManagement>
-		<system>GitHub</system>
-		<url>https://github.com/coolarch/infrastructure/issues</url>
-	</issueManagement>
-	<developers>
-		<developer>
-			<id>matthew.werny</id>
-			<name>Matthew Werny</name>
-			<organization>CoolArch</organization>
-			<organizationUrl>http://www.arch.cool/</organizationUrl>
-			<timezone>-7</timezone>
-			<email>subzero@iceflow.net</email>
-			<roles>
-				<role>Project Lead</role>
-			</roles>
-		</developer>
-	</developers>
-	<licenses>
-		<license>
-			<name>MIT</name>
-			<url>http://opensource.org/licenses/MIT</url>
-		</license>
-	</licenses>
-	<ciManagement>
-		<system>Travis CI</system>
-		<url>TBD</url>
-	</ciManagement>
 	<properties>
 		<infrastructure.project.build.sourceEncoding>UTF-8</infrastructure.project.build.sourceEncoding>
 		<infrastructure.java.source.version>1.8</infrastructure.java.source.version>
 		<infrastructure.java.target.version>1.8</infrastructure.java.target.version>
 		<infrastructure.lib.junit.version>4.12</infrastructure.lib.junit.version>
 		<infrastructure.lib.mockito.version>1.10.19</infrastructure.lib.mockito.version>
-		<infrastructure.plugin.lint.version>0.0.8</infrastructure.plugin.lint.version>
+		<infrastructure.plugin.lint.version>0.0.9</infrastructure.plugin.lint.version>
+		<infrastructure.plugin.license.version>1.8</infrastructure.plugin.license.version>
+		<infrastructure.plugin.license.id>apache2</infrastructure.plugin.license.id>
+		<infrastructure.plugin.formatter.version>1.5.0</infrastructure.plugin.formatter.version>
 		<skipITs>true</skipITs>
 	</properties>
 	<build>
@@ -80,6 +50,14 @@
 					<skip>${skipITs}</skip>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>license-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>com.marvinformatics.formatter</groupId>
+				<artifactId>formatter-maven-plugin</artifactId>
+			</plugin>
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -91,6 +69,41 @@
 						<source>${infrastructure.java.source.version}</source>
 						<target>${infrastructure.java.target.version}</target>
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>license-maven-plugin</artifactId>
+					<version>${infrastructure.plugin.license.version}</version>
+					<configuration>
+						<licenseName>${infrastructure.plugin.license.id}</licenseName>
+						<licenseResolver>classpath://license/resolver</licenseResolver>
+						<includes>
+							<include>**/*.java</include>
+						</includes>
+						<roots>
+							<root>src/main/java</root>
+							<root>src/test/java</root>
+							<root>src/main/resources</root>
+							<root>src/test/resources</root>
+						</roots>
+						<failOnMissingHeader>true</failOnMissingHeader>
+					</configuration>
+					<executions>
+						<execution>
+							<id>license-maven-plugin-check-file-header</id>
+							<goals>
+								<goal>check-file-header</goal>
+							</goals>
+							<phase>verify</phase>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>cool.arch.infrastructure</groupId>
+							<artifactId>licenses</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>com.lewisd</groupId>
@@ -105,6 +118,53 @@
 							<phase>validate</phase>
 						</execution>
 					</executions>
+					<dependencies>
+						<!-- Remove override as soon as lint plugin bumps to this dep version -->
+						<dependency>
+							<groupId>commons-validator</groupId>
+							<artifactId>commons-validator</artifactId>
+							<version>1.4.1</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>com.marvinformatics.formatter</groupId>
+					<artifactId>formatter-maven-plugin</artifactId>
+					<version>${infrastructure.plugin.formatter.version}</version>
+					<executions>
+						<execution>
+							<id>formatter-maven-plugin-validate</id>
+							<goals>
+								<goal>validate</goal>
+							</goals>
+							<phase>validate</phase>
+						</execution>
+					</executions>
+					<configuration>
+						<aggregator>true</aggregator>
+						<basedir>${baseDir}</basedir>
+						<sourceDirectory>./</sourceDirectory>
+						<excludes>
+							<exclude>**/target/**</exclude>
+						</excludes>
+						<encoding>${infrastructure.project.build.sourceEncoding}</encoding>
+						<aggregator>true</aggregator>
+						<lineEnding>LF</lineEnding>
+						<configFile>classpath:/cool/arch/infrastructure/codequality/formatter/java.xml</configFile>
+						<configJsFile>classpath:/cool/arch/infrastructure/codequality/formatter/javascript.xml</configJsFile>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>cool.arch.infrastructure</groupId>
+							<artifactId>formatter-java</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+						</dependency>
+						<dependency>
+							<groupId>cool.arch.infrastructure</groupId>
+							<artifactId>formatter-javascript</artifactId>
+							<version>1.0.0-SNAPSHOT</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>

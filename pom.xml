@@ -8,5 +8,46 @@
 	<name>infrastructure</name>
 	<modules>
 		<module>base-pom</module>
+		<module>licenses</module>
+		<module>codequality</module>
 	</modules>
+	<url>https://github.com/coolarch/infrastructure</url>
+	<scm>
+		<connection>scm:git:https://github.com/coolarch/infrastructure.git</connection>
+		<developerConnection>scm:git:https://github.com/coolarch/infrastructure.git</developerConnection>
+		<url>https://github.com/coolarch/infrastructure</url>
+	  <tag>HEAD</tag>
+	</scm>
+	<organization>
+		<name>CoolArch</name>
+		<url>http://www.arch.cool</url>
+	</organization>
+	<inceptionYear>2015</inceptionYear>
+	<issueManagement>
+		<system>GitHub</system>
+		<url>https://github.com/coolarch/infrastructure/issues</url>
+	</issueManagement>
+	<developers>
+		<developer>
+			<id>matthew.werny</id>
+			<name>Matthew Werny</name>
+			<organization>CoolArch</organization>
+			<organizationUrl>http://www.arch.cool/</organizationUrl>
+			<timezone>-7</timezone>
+			<email>matthew.werny@arch.cool</email>
+			<roles>
+				<role>Project Lead</role>
+			</roles>
+		</developer>
+	</developers>
+	<licenses>
+		<license>
+			<name>MIT</name>
+			<url>http://opensource.org/licenses/MIT</url>
+		</license>
+	</licenses>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>TBD</url>
+	</ciManagement>
 </project>
