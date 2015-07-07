@@ -12,6 +12,7 @@
 		<module>codequality</module>
 	</modules>
 	<url>https://github.com/coolarch/infrastructure</url>
+	<description>Base support infrastructure artifacts for CoolArch projects</description>
 	<scm>
 		<connection>scm:git:https://github.com/coolarch/infrastructure.git</connection>
 		<developerConnection>scm:git:https://github.com/coolarch/infrastructure.git</developerConnection>
