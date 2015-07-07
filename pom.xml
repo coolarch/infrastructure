@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>cool.arch.infrastructure</groupId>
 	<artifactId>infrastructure</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>infrastructure</name>
 	<modules>
@@ -17,7 +17,7 @@
 		<connection>scm:git:https://github.com/coolarch/infrastructure.git</connection>
 		<developerConnection>scm:git:https://github.com/coolarch/infrastructure.git</developerConnection>
 		<url>https://github.com/coolarch/infrastructure</url>
-	  <tag>infrastructure-1.0.0</tag>
+	  <tag>HEAD</tag>
 	</scm>
 	<organization>
 		<name>CoolArch</name>
