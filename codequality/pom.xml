@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>cool.arch.infrastructure</groupId>
 		<artifactId>infrastructure</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 	<artifactId>codequality</artifactId>
 	<packaging>pom</packaging>
