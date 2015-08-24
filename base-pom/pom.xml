@@ -145,6 +145,8 @@
 					<configuration>
 						<licenseName>${infrastructure.plugin.license.id}</licenseName>
 						<licenseResolver>classpath://license/resolver</licenseResolver>
+						<processStartTag>@formatter:off</processStartTag>
+						<processEndTag>@formatter:on</processEndTag>
 						<includes>
 							<include>**/*.java</include>
 						</includes>
