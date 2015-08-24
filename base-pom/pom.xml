@@ -19,7 +19,7 @@
 		<infrastructure.plugin.lint.version>0.0.9</infrastructure.plugin.lint.version>
 		<infrastructure.plugin.license.version>1.8</infrastructure.plugin.license.version>
 		<infrastructure.plugin.license.id>apache2</infrastructure.plugin.license.id>
-		<infrastructure.plugin.formatter.version>1.5.0</infrastructure.plugin.formatter.version>
+		<infrastructure.plugin.formatter.version>1.6.0.RC4</infrastructure.plugin.formatter.version>
 		<skipITs>true</skipITs>
 	</properties>
 	<build>
@@ -157,6 +157,7 @@
 							<root>src/test/resources</root>
 						</roots>
 						<failOnMissingHeader>true</failOnMissingHeader>
+						<failOnNotUptodateHeader>true</failOnNotUptodateHeader>
 					</configuration>
 					<executions>
 						<execution>
@@ -233,6 +234,11 @@
 							<groupId>cool.arch.infrastructure</groupId>
 							<artifactId>formatter-javascript</artifactId>
 							<version>1.0.1-SNAPSHOT</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.plexus</groupId>
+							<artifactId>plexus-utils</artifactId>
+							<version>3.0.22</version>
 						</dependency>
 					</dependencies>
 				</plugin>
